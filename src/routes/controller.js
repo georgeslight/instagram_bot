@@ -1,20 +1,24 @@
 const { posts } = require('../utils/utils');
 const { saveToJson } = require('../repo/repository')
 const axios = require('axios')
+require('dotenv').config();
+
+const apiKey = process.env.RAPID_API_KEY;
 
 async function getAllPosts(req, res) {
   try {
     const username_or_id = req.params.username;
 
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: `https://instagram-scraper-api3.p.rapidapi.com/user_posts?username_or_id=${username_or_id}&count=12`,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-rapidapi-key': '8d3082bea7mshe7f55685ef0262fp177b56jsn6f35636f88c9'
-      }
-    };
+      let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: `https://instagram-scraper-api3.p.rapidapi.com/user_reels?username_or_id=${username}`,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-rapidapi-key': apiKey,
+          'x-rapidapi-host': 'instagram-scraper-api3.p.rapidapi.com'
+        }
+      };
 
     // Make the API call
     const response = await axios.request(config);
