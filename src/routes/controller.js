@@ -1,4 +1,4 @@
-const { posts } = require('../utils/utils');
+const { extractPosts } = require('../utils/utils');
 const { saveToJson } = require('../repo/repository')
 const axios = require('axios')
 require('dotenv').config();
