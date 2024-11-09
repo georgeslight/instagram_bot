@@ -1,3 +1,5 @@
+const fs=  require('fs')
+
 function extractPosts(data) {
     const videoList = [];
 
@@ -5,7 +7,11 @@ function extractPosts(data) {
         videoList.push(item);
     });
 
-    return videoList;
+    return filterReels(videoList);
+}
+
+function filterReels(posts) {
+    return posts.filter(item => item.product_type === 'clips');
 }
 
 module.exports = { posts: extractPosts }
