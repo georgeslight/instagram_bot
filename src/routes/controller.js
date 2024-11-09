@@ -7,7 +7,11 @@ const apiKey = process.env.RAPID_API_KEY;
 
 async function getAllPosts(req, res) {
   try {
-    const username_or_id = req.params.username;
+    // const username_or_id = req.params.username;
+    const profileNames = ['learntogrow', 'therock'];
+    const allPosts = [];
+
+    for (const username of profileNames) {
 
       let config = {
         method: 'get',
@@ -20,12 +24,18 @@ async function getAllPosts(req, res) {
         }
       };
 
-    // Make the API call
-    const response = await axios.request(config);
+      // Make the API call
+      const response = await axios.request(config);
+      const postList = extractPosts(response.data);
 
-    const postList = posts(response.data)
+      // Combine all posts from each profile
+      allPosts.push(postList);
+    }
 
-      await saveToJson(postList);
+    // Save all posts to JSON file
+    await saveToJson(allPosts);
+    console.log('Data saved successfully');
+    // res.status(200).json({allPosts});
 
     res.status(200).json({postList});
   } catch (error) {

@@ -7,11 +7,11 @@ function extractPosts(data) {
         videoList.push(item);
     });
 
-    return filterReels(videoList);
+    return videoList;
 }
 
-function filterReels(posts) {
-    return posts.filter(item => item.product_type === 'clips');
-}
+// function filterReels(posts) {
+//     return posts.filter(item => item.product_type === 'clips');
+// }
 
-module.exports = { posts: extractPosts }
+module.exports = { extractPosts }
