@@ -37,7 +37,6 @@ async function getAllPosts(req, res) {
     console.log('Data saved successfully');
     // res.status(200).json({allPosts});
 
-    res.status(200).json({postList});
   } catch (error) {
     console.error('Error fetching profile data:', error.response ? error.response.data : error.message);
     res.status(500).json({error: 'Failed to fetch data'});
